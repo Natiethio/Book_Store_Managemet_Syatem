@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5/CSS3 Responsive Image Slider</title>
+<style type="text/css">
+
+#slider {
+	overflow: hidden;
+	height: 500px;
+	width:900px;
+	margin-left: 200px;
+}
+#slider figure {
+	position: relative;
+	width: 500%;
+	margin: 0;
+	left: 0;
+	animation: 20s slider infinite;
+}
+#slider figure img {
+	float: left;
+	width: 20%;
+}
+
+@keyframes slider {
+	0% {
+		left: 0;
+	}
+	20% {
+		left: 0;
+	}
+	25% {
+		left: -100%;
+	}
+	45% {
+		left: -100%;
+	}
+	50% {
+		left: -200%;
+	}
+	70% {
+		left: -200%;
+	}
+	75% {
+		left: -300%;
+	}
+	95% {
+		left: -300%;
+	}
+	100% {
+		left: -400%;
+	}
+}
+
+</style>
+</head>
+<body>
+
+	<div id="slider">
+		<figure>
+			
+			background-image="url('img/bookbgg1.jpg')">
+			<background-image:url('img/bookbgg2.jpg')>
+			<background-image:url('img/bookbgg3.jpg')>
+			<background-image:url('img/home-bg.jpg'>
+			<background-image:url('img/bookbgg5.jpg')>
+		</figure>
+	</div>
+
+
+</body>
+</html>
+
+
+
+
+
+

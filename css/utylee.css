@@ -1,0 +1,76 @@
+
+
+.image-section {
+  width: 20%;
+  height: 50vh;
+  border-radius: 5%;
+  background-image: url(images/kido3.jpg);
+  background-size: cover;
+  
+  background-position: center;
+  margin: 70px 0 0 450px;
+  animation: slide 30s infinite;
+}
+
+@keyframes slide {
+  5% {
+    background-image: url(images/fikereske.jpg);
+  }
+  10% {
+    background-image: url(images/download.jpg);
+  }
+  15% {
+    background-image: url(images/oromay.jpg);
+  }
+  20% {
+    background-image: url('images/LF15.jpg');
+  }
+  25% {
+    background-image: url('images/dertogada.jpg');
+  }
+  30% {
+    background-image: url('images/ramatohara.jpg');
+  }
+  35% {
+    background-image: url('imags/zantozora.jpg');
+  }
+   40% {
+    background-image: url('images/yoratorad.jpg');
+  }
+  45% {
+    background-image: url('images/mekeryocu.jpg');
+  }
+  50% {
+    background-image: url('images/uuu.jpg');
+  }
+  55% {
+    background-image: url('images/lelasew.jpg');
+  }
+  60% {
+    background-image: url('images/phb11.jpg');
+  }
+  65% {
+    background-image: url('images/emgwa.jpg');
+  }
+  70% {
+    background-image: url('images/tewdros.jpg');
+  }
+  75% {
+    background-image: url('images/melorina.jpg');
+  }
+  80% {
+    background-image: url('images/nightshade.jpg');
+  }
+  85% {
+    background-image: url('images/nm.jpg');
+  }
+  90% {
+    background-image: url('images/giracha.jpg');
+  }
+  95% {
+    background-image: url('images/ch3.jpg');
+  }
+  100% {
+    background-image: url('images/annafrank');
+  }
+}

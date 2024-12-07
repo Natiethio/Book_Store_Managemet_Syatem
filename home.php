@@ -1,0 +1,142 @@
+<?php
+
+include 'config.php';
+
+session_start();
+
+$user_id = $_SESSION['user_id'];
+
+if(!isset($user_id)){
+   header('location:login.php');
+}
+
+if(isset($_POST['add_to_cart'])){
+
+   $product_name = $_POST['product_name'];
+   $product_price = $_POST['product_price'];
+   $product_image = $_POST['product_image'];
+   $product_quantity = $_POST['product_quantity'];
+
+   $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
+
+   if(mysqli_num_rows($check_cart_numbers) > 0){
+      $message[] = 'already added to cart!';
+   }else{
+      mysqli_query($conn, "INSERT INTO `cart`(user_id, name, price, quantity, image) VALUES('$user_id', '$product_name', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
+      $message[] = 'product added to cart!';
+   }
+
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>home</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/textslider.css">
+   <link rel="icon" href="images/kido3.jpg" type="image/x-icon">
+</head>
+<body>
+   
+<?php include 'header.php'; ?>
+
+<section class="home" style="background-image:url('images/bookbgg1.jpg')">
+<div class="wrapper" style="color:black">
+    <div class="static-txt" style="margin-top:-565px;color:black">ማንበብ</div>
+    <ul class="dynamic-txts" style="margin-top:-565px">
+      <li><span style="color:rgb(34, 196, 34)">አእምሮን</span></li>
+      <li><span style="color:yellow">ማንነትን</span></li>
+      <li><span style="color:red">መንፈስን</span></li>
+      <li><span style="color:blue">ይገነባል!</span></li>
+    </ul>
+  </div>
+
+   <div class="content">
+   <h3 style="color:black">ሃገር ያለአንድነት ህሊና ያለንባብ አይበልፅግም!</h3>
+      <a href="shop.php" class="white-btn">ወደ መፅሃፍት አለም ዝለቅ</a>
+   </div>
+
+</section>
+
+<section class="products">
+
+   <h1 class="title">Best Of All Time</h1>
+
+   <div class="box-container">
+
+      <?php  
+         $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT 6") or die('query failed');
+         if(mysqli_num_rows($select_products) > 0){
+            while($fetch_products = mysqli_fetch_assoc($select_products)){
+      ?>
+     <form action="" method="post" class="box" style="background: linear-gradient(to right, red, rgb(0,0,0))">
+      <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+      <div class="name"><?php echo $fetch_products['name']; ?></div>
+      <div class="price"><?php echo $fetch_products['price']; ?>ETB</div>
+      <input type="number" min="1" name="product_quantity" value="1" class="qty">
+      <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+      <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+      <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+      <input type="submit" value="Add to cart" name="add to cart" class="btn" style="background-color:1797a0">
+     </form>
+      <?php
+         }
+      }else{
+         echo '<p class="empty">no products added yet!</p>';
+      }
+      ?>
+   </div>
+
+   <div class="load-more" style="margin-top: 2rem; text-align:center">
+      <a href="shop.php" class="option-btn">Book grid</a>
+   </div>
+
+</section>
+
+<section class="about">
+
+   <div class="flex">
+
+      
+
+      <div class="content">
+         <h3>ሰለ እኛ</h3>
+         
+         <a href="about2.php" class="btn">About us</a>
+      </div>
+
+   </div>
+
+</section>
+
+<section class="home-contact" style="background-color:white">
+
+   <div class="content" >
+      <h3 style="color:black"> Any Questions?</h3>
+      
+      <a href="contact.php" class="white-btn">Contact us</a>
+   </div>
+
+</section>
+
+
+
+
+
+<?php include 'footer.php'; ?>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
